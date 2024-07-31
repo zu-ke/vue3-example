@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-02-数据类型.html</title>
+</head>
+<body>
+
+<script>
+    // 字符串类型 string 定义 字符串类型用于存储字符序列
+    let name = "小明"
+    let web = "gpt.zukedog.cn"
+
+    // 数值类型 number 定义 用于存储数字, 可以表示整数、浮点数
+    let balance = -200 //账户余额为-200元
+    let price = 10.1 //价格为10.1元
+
+    // 布尔类型 boolean 定义 布尔类型只能取两个值,true(真) 和 false(假)
+    let lights = true //灯亮
+
+    // 对象 object 定义 对象是一种复合的数据类型, 可以通过键值对的方式存储多个值
+    let dog = {
+        name: "小黑",
+        age: 4,
+        weight: 70.4
+    }
+    console.log("小黑狗：", dog)
+
+    // map 定义 map 是一种特殊的数据结构,用于存储键值对的有序集合
+    // 注：
+    // 1.Map相对于对象提供了更灵活、有序、高效的键值对存储和操作方式,当需要在大量键值对中快速查找或删除特定键值对时, Map比对象更高效
+    // 2.Map提供了一些便捷的方法来操作键值对, 如: get()、set()、delete()
+    // 3.Map提供了一些便捷的迭代方法, 如: forEach()、keys()、values()、entries()
+    let cat = new Map([
+        ["name", "狸花猫"],
+        ["age", 4]
+    ])
+    console.log("狸花猫：", cat)
+    console.log("狸花猫姓名：", cat.get("name"))
+
+    // set 定义 Set 是一种特殊的数据结构, 用于存储无序且唯一的值的集合
+    let number = new Set([1, 2, 3, 4, 5]) //定义了一个包含5个"不重复"的整数的集合
+    console.log("number：", number)
+    //let numbers = new Set([1, 2, 3, 4, 5, 5]) //错误示范
+
+    // 数组 array 定义 数组是一种有序集合, 可以包含不同类型的元素，并且数组的长度是可变的
+    let str = ["a", "b", "c", "d", "e"];
+    console.log("str：", str)
+
+    // 函数 function 定义 函数是一段可重复执行的代码块，可以接收输入参数并返回一个值或执行某些操作
+    function sum(a, b) {
+        return a + b;
+    }
+
+    console.log("sum：", sum(1, 1))
+
+    // 类 class 定义 类是一种蓝图或模板，用于创建具有相同属性和方法的对象
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        info() {
+            console.log("姓名：", this.name, ",", "年龄：", this.age)
+        }
+    }
+
+    const person = new Person("小明", "18");
+    person.info();
+</script>
+</body>
+</html>

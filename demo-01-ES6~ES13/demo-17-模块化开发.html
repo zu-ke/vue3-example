@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-17-模块化开发.html</title>
+</head>
+<body>
+<script type="module">
+    //模块化开发是指将复杂的代码拆分为独立的模块,每个模块负责完成特定的功能,
+    //不同的模块之间可以通过使用export关键字将代码导出为模块,其他模块可以使用import关键字导入该模块
+
+    //方式一：
+    //import {title as webTitle, web, getWeb} from "./demo-17/index.js";
+
+    //console.log(webTitle) //租客
+    //console.log(web) //gpt.zukedog.cn
+    //console.log(getWeb()) //blog.zukedog.cn
+
+    //注: import * as obj 用于避免命名冲突
+    //import * as obj from "./demo-17/index.js"
+
+    //console.log(obj.title) //租客
+    //console.log(obj.web) //gpt.zukedog.cn
+    //console.log(obj.getWeb()) //blog.zukedog.cn
+
+    //方式二：
+    import obj from "./demo-17/index.js";
+
+    console.log(obj.title) //租客
+    console.log(obj.web) //gpt.zukedog.cn
+    console.log(obj.getWeb()) //blog.zukedog.cn
+</script>
+</body>
+</html>

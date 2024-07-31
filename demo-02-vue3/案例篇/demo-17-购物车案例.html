@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-17-购物车案例.html</title>
+    <script src="../js/vue.global.js"></script>
+    <style>
+        table {
+            width: 600px;
+            color: #8f8e8e;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table thead {
+            background: #F5F5F5;
+        }
+
+        table tr {
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #ececec;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <table>
+        <thead>
+        <tr>
+            <td><input type="checkbox" v-model="data.selected" @change="selectAll"></td>
+            <td>商品</td>
+            <td>单价</td>
+            <td>库存</td>
+            <td colspan="2">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(value,index) in data.list">
+            <td>
+                <!--:value="value"将商品作为input的值，v-model="data.checkboxList"会将该值放进checkboxList数组-->
+                <!--当用户选中复选框时，当前商品对象会被添加到 data.checkboxList 数组中。-->
+                <!--当用户取消选中复选框时，当前商品对象会从 data.checkboxList 数组中移除。-->
+                <input type="checkbox" v-model="data.checkboxList" :value="value" @change="checkSelect">
+            </td>
+            <td>{{ value.name }}</td>
+            <td>{{ value.price }}</td>
+            <td>{{ value.stock }}</td>
+            <td>
+                <button @click="sub(value)">-</button>
+                {{ value.number }}
+                <button @click="add(value)">+</button>
+            </td>
+            <td>
+                <button @click="del(index,value.id)">删除</button>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>总价 {{ totalPrice }}</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script>
+    const {createApp, reactive, watchEffect, computed} = Vue;
+    createApp({
+        setup() {
+            const data = reactive({
+                selected: false, //是否全选
+                checkboxList: [],
+                list: [
+                    {
+                        id: 1, //id
+                        name: "铅笔", //商品名
+                        price: 10, //价格
+                        number: 1, //上架数量
+                        stock: 3 //库存
+                    },
+                    {
+                        id: 2,
+                        name: "鼠标",
+                        price: 20,
+                        number: 2,
+                        stock: 5
+                    },
+                    {
+                        id: 3,
+                        name: "键盘",
+                        price: 30,
+                        number: 1,
+                        stock: 6
+                    }
+                ]
+            })
+            //减 卖出
+            const sub = (value) => {
+                value.number--
+                if (value.number <= 1) {
+                    value.number = 1
+                }
+            }
+
+            //加 上架
+            const add = (value) => {
+                value.number++
+                //上架的商品数量不能多余库存数量
+                if (value.number >= value.stock) {
+                    value.number = value.stock
+                }
+            }
+
+            //删除商品
+            const del = (index, id) => {
+                data.list.splice(index, 1) //splice(要删除元素的索引位置, 要删除的元素数量)
+                //filter 筛选符合条件的元素, 返回一个新的数组
+                let newArray = data.checkboxList.filter((value, index) => {
+                    return value.id != id
+                })
+                data.checkboxList = newArray
+                checkSelect() //检查勾选状态
+            }
+
+            //总价
+            const totalPrice = computed(() => {
+                let total = 0
+                for (let i = 0; i < data.checkboxList.length; i++) {
+                    total += data.checkboxList[i].price * data.checkboxList[i].number
+                }
+                return total
+            })
+
+
+            //全选/反选
+            const selectAll = () => {
+                if (data.selected) { //true
+                    data.checkboxList = data.list
+                } else { //false
+                    data.checkboxList = []
+                }
+            }
+
+            //检查勾选状态
+            const checkSelect = () => {
+                if (data.checkboxList.length != data.list.length || data.list.length == 0) {
+                    data.selected = false
+                } else {
+                    data.selected = true
+                }
+            }
+
+            return {
+                data,
+                sub,
+                add,
+                del,
+                totalPrice,
+                selectAll,
+                checkSelect
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

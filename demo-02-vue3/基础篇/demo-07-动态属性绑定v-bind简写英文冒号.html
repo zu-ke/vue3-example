@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-07-动态属性绑定v-bind简写英文冒号.html</title>
+    <script src="../js/vue.global.js"></script>
+    <style>
+        .textColor{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- :value -->
+    <h3>value="gpt.zukedog.cn"</h3>
+    <input type="text" value="gpt.zukedog.cn">
+
+    <h3>v-bind:value="web.url"</h3>
+    <input type="text" v-bind:value="web.url">
+
+    <h3>简写 :value="web.url"</h3>
+    <input type="text" :value="web.url">
+
+    <!-- :src -->
+    <h3>src="./img/1.png"</h3>
+    <img width="10%" src="../img/1.png">
+
+    <h3>v-bind:src="web.img"</h3>
+    <img width="10%" v-bind:src=web.img>
+
+    <h3>简写 :src="web.img"</h3>
+    <img width="10%" :src=web.img>
+
+    <!-- :class -->
+    <!--这里的textColor是我们上面定义的一个样式-->
+    <!--需求：根据fontStatus的属性值实现是否渲染css样式-->
+    <h3>class="textColor"</h3>
+    <b class="textColor">zuke</b>
+
+    <h3>:class="{textColor:web.fontStatus}"</h3>
+    <!--如果fontStatus为true，则渲染css样式，为false就不渲染css样式-->
+    <b v-bind:class="{textColor:web.fontStatus}">gpt.zukedog.cn</b>
+
+    <h3>简写 :class="{textColor:web.fontStatus}"</h3>
+    <b :class="{textColor:web.fontStatus}">gpt.zukedog.cn</b>
+</div>
+
+<script>
+    const {createApp, reactive} = Vue;
+    createApp({
+        setup(){
+            const web = reactive({
+                url: "gpt.zukedog.cn",
+                img: "./img/1.png",
+                fontStatus: true
+            })
+
+            return {
+                web
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

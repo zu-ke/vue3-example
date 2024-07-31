@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-01-创建一个 vue 应用程序.html</title>
+    <script src="../js/vue.global.js"></script>
+</head>
+<body>
+<!--Vue.js - 渐进式 JavaScript 框架-->
+<!--"渐进式"是指可以按需引入Vue.js的部分功能, 而不必全量引入整个框架-->
+
+<div id="app">
+    {{ msg }}
+    <h2>{{ web.title }}</h2>
+    <h3>{{ web.url }}</h3>
+</div>
+
+<script>
+    //<div id="app"></div> 指定一个 id 为 app 的 div 元素
+    //{{ }} 插值表达式, 可以将 Vue 实例中定义的数据在视图中进行渲染
+    //如: Vue 实例中定义一个 msg 变量, 值为 "Hello world", 在模板中若使用插值表达式 {{ msg }} 则会被渲染成 "Hello world"
+    //响应式数据是指当数据发生变化时, 模板中依赖于该数据的部分会自动更新
+
+    //方式一：创建一个 Vue 应用程序
+    /*
+    Vue.createApp({
+        //Composition API(组合式 API) 的 setup选项 用于设置响应式数据和方法等
+        setup(){
+            //Composition API 的 reactive()函数 用于创建响应式数据
+            const web = Vue.reactive({ //Vue.reactive 创建一个响应式数据对象 web, 其中包含 title 和 url 属性
+                title: "zuke",
+                web: "gpt.zukedog.cn"
+            })
+            //返回数据
+            return {
+                msg: "success",
+                web
+            }
+        }
+    }).mount("#app") //将 Vue 应用程序挂载(mount) 到 app 元素上
+    */
+
+    //方式二：将 Vue 对象中的 createApp、reactive 属性赋值给 createApp、reactive 变量
+    const { createApp, reactive } = Vue //解构赋值语法
+    createApp({
+        setup(){
+            const web = reactive({
+                title: "zuke",
+                web: "gpt.zukedog.cn"
+            })
+            //返回数据
+            return {
+                msg: "success",
+                web
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

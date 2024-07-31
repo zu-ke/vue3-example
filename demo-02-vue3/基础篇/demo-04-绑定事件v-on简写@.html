@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-04-绑定事件v-on简写@.html</title>
+    <script src="../js/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>msg: {{ msg }}</h3>
+    <h3>url: {{ web.url }}</h3>
+    <h3>user: {{ web.user }}</h3>
+    <h3>sub: {{ sub(100, 20) }}</h3>
+    <!-- v-on:click 表示在 button 元素上监听 click 事件 -->
+    <button v-on:click="edit">修改</button> <br>
+
+    <!-- @click 简写形式 -->
+    <button @click="add(20,30)">加法</button> <br>
+
+    <!--
+        enter space tab 按键修饰符
+        keyup是在用户松开按键时才触发
+        keydown是在用户按下按键时立即触发
+    -->
+    回车 <input type="text" @keyup.enter="add(40,60)"> <br>
+    空格 <input type="text" @keyup.space="add(20, 30)"> <br>
+    Tab <input type="text" @keydown.tab="add(10, 20)"> <br>
+
+    <!-- 组合快捷键 -->
+    Ctrl + Enter <input type="text" @keyup.ctrl.enter="add(40,60)"> <br>
+    Ctrl + A <input type="text" @keyup.ctrl.a="add(20, 30)">
+</div>
+
+<script>
+    const {createApp, reactive} = Vue;
+    createApp({
+        setup() {
+            const web = reactive({
+                title: "zuke",
+                url: "gpt.zukedog.cn",
+                user: 0
+            })
+
+            const edit = () => {
+                web.url = "blog.zukedog.cn"
+                //msg = "jock" //错误示例 不能直接改变msg的值,因为msg是一个普通变量, 不是响应式数据
+            }
+
+            const add = (a, b) => {
+                web.user = a + b
+            }
+
+            const sub = (a, b) => {
+                return a - b
+            }
+            return {
+                msg: "success", //普通变量, 非响应式数据, 在模板中普通变量不会自动更新
+                web,
+                edit,
+                add,
+                sub,
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

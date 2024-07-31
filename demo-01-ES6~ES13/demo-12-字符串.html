@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-12-字符串.html</title>
+</head>
+<body>
+<script>
+    //定义字符串
+    let web = "gpt.zukedog.cn"
+
+    // 字符串长度
+    console.log("length", web.length) //length 14
+
+    // 转小写
+    let str1 = "GPT.ZUKEDOG.CN"
+    console.log("转小写", str1.toLowerCase()) //转小写 gpt.zukedog.cn
+
+    // 转大写
+    console.log("转大写", web.toUpperCase()) //转大写 GPT.ZUKEDOG.CN
+
+    // 返回字符串在索引处的字符
+    console.log("返回字符串在索引处的字符", web[0]) //返回字符串在索引处的字符 g
+
+    // 字符串转为字符数组
+    let strArray = [...web]
+    console.log("字符串转为字符数组", strArray) //字符串转为字符数组 Array(14) [ "g", "p", "t", ".", "z", "u", "k", "e", "d", "o", … ]
+
+    // 字符串转 int
+    let intNum = parseInt("1");
+    console.log("字符串转 int", intNum) //字符串转 int 1
+
+    // 字符串替换
+    let newWeb = web.replace("gpt", "blog");
+    console.log("字符串替换", newWeb) //字符串替换 blog.zukedog.cn
+    let str3 = "q-w-e-r"
+    let newStr3 = str3.replaceAll("-", ".");
+    console.log("字符串替换", newStr3) //字符串替换 q.w.e.r
+
+    // 去除字符串两侧空白字符
+    let str4 = "   gpt.zukedog.cn   ".trim()
+    console.log("去除字符串两侧空白字符", str4)
+
+    // 判断是否包含某个字符串
+    let include = web.includes("gpt");
+    console.log("判断是否包含某个字符串", include) //判断是否包含某个字符串 true
+
+    // 返回字符串中第一次出现某个字符串的索引位置,若不存在则返回-1
+    let indexOf = web.indexOf(".");
+    console.log("返回字符串中第一次出现某个字符串的位置,若不存在则返回-1", indexOf) //返回字符串中第一次出现某个字符串的位置,若不存在则返回-1 3
+
+    // 判断一个字符串是否以指定的前缀开头
+    let startsWith = web.startsWith("g");
+    console.log("判断一个字符串是否以指定的前缀开头", startsWith) //判断一个字符串是否以指定的前缀开头 true
+
+
+    // 判断一个字符串是否以指定的后缀结尾
+    let endsWith = web.endsWith("n");
+    console.log("判断一个字符串是否以指定的后缀结尾", endsWith) //判断一个字符串是否以指定的后缀结尾 true
+
+    // 将字符串按照指定字符分割成数组
+    let split = "q-w-e-r".split("-");
+    console.log("将字符串按照指定字符分割成数组", split) //将字符串按照指定字符分割成数组 Array(4) [ "q", "w", "e", "r" ]
+
+    // 字符串截取 substr[开始位置,截取长度)
+    let subStr1 = web.substring(0, 3)
+    console.log("字符串截取 substr(开始位置,截取长度)", subStr1) //字符串截取 substr(开始位置,截取长度) gpt
+
+    let subStr2 = web.substring(web.length - 2)
+    console.log("截取字符串的最后2个字符", subStr2) //截取字符串的最后2个字符 cn
+
+    let subStr3 = web.substring(4)
+    console.log("从字符串的第5个位置开始截取直至字符串末尾", subStr3) //从字符串的第5个位置开始截取直至字符串末尾 zukedog.cn
+
+    //重复字符串
+    let repeatStr = "jock".repeat(3)
+    console.log("重复字符串", repeatStr) //重复字符串 jockjockjock
+
+    //在字符串前添加指定数量的填充字符, 直到该字符串达到指定的长度
+    let padStart = "David".padStart(15, "-") //由于 David 占 5 个字符, 因此只需要再添加 10 个横线, 即可达到总长度 15
+    //let padStart = "David".padStart(15) //默认空格
+    console.log("padStart:", padStart) //padStart: ----------David
+
+    //在字符串后添加指定数量的填充字符, 直到该字符串达到指定的长度
+    let padEnd = "David".padEnd(15, "-")
+    console.log("padEnd:", padEnd) //padEnd: David----------
+</script>
+</body>
+</html>

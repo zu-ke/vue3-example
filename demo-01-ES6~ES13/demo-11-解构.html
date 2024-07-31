@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-11-解构.html</title>
+</head>
+<body>
+<script>
+    //解构 可以从数组或对象中提取值并赋给变量
+    //--- 数组解构
+    let [x, y] = [1, 2]
+    console.log("x:", x, "y:", y) //x: 1 y: 2
+
+    let [, , c] = [10, 20, 30]
+    console.log("c:", c) //c: 30
+
+    //扩展运算符
+    let [A, ...B] = [1, 2, 3, 4, 5, 6]
+    console.log("A:", A, "B:", B) //A: 1 B:Array(5) [ 2, 3, 4, 5, 6 ]
+
+    let [x2, y2 = 200] = [100] //默认值
+    console.log("x2:", x2, "y2:", y2) //x2: 100 y2: 200
+
+    //两数交换
+    let x3 = 10
+    let y3 = 20; //不加分号会报错
+    [x3, y3] = [y3, x3]
+    console.log("x3:", x3, "y3:", y3) //x3: 20 y3: 10
+
+    //--- 对象解构
+    let person = {
+        name: "小明",
+        age: 18
+    }
+
+    let {name} = person
+    console.log("name:", name) //name: 小明
+
+    //重命名不会修改原本的person对象的属性名，类似于新建了一个person类
+    let {name: userName, age} = person
+    console.log("userName:", userName, "age:", age) //userName: 小明 age: 18
+
+    //新增属性同时设置默认值,不会修改原本的person对象的属性，类似于新建了一个person类
+    let {address = "china"} = person
+    console.log("address:", address) //address: china
+</script>
+</body>
+</html>

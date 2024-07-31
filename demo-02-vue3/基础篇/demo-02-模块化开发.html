@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-02-模块化开发.html</title>
+</head>
+<body>
+<div id="app">
+    {{ msg }}
+
+    <h2>{{ web.title }}</h2>
+    <h3>{{ web.url }}</h3>
+</div>
+
+<script type="module">
+    import { createApp, reactive } from '../js/vue.esm-browser.js'
+
+    createApp({
+        setup() {
+            const web = reactive({
+                title: "zuke",
+                web: "gpt.zukedog.cn"
+            })
+
+            return {
+                msg:"success",
+                web
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

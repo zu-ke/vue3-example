@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-06-条件渲染v-if.html</title>
+    <script src="../js/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>web.show {{web.show}}</h3>
+    <h3>web.user {{web.user}}</h3>
+    <p v-show="web.show">v-show zuke</p>
+    <p v-if="web.show">v-if gpt.zukedog.cn</p>
+
+
+    <!--v-if: 当条件为 true 时，渲染该元素；如果条件为 false，则不渲染该元素。-->
+    <!--v-else-if: 仅在前面的 v-if 条件为 false 时才会被评估。如果条件为 true，则渲染该元素。-->
+
+    <p v-if="web.user < 1000">新网站</p>
+    <p v-if="web.user >= 1000 && web.user < 2000">优秀网站</p>
+    <p v-if="web.user >= 2000 && web.user < 3000">资深网站</p>
+
+    <button @click="toggle">点击切换显示状态</button>
+    <br> <br>
+    <!--<input type="text" style="width: 200px" placeholder="每次回车增加500" @keyup.enter="add(500)">-->
+    <button @click="add(500)">点击后web.user增加500</button>
+</div>
+
+<script>
+    const {createApp, reactive} = Vue;
+    //v-show 通过 css display属性 来控制元素的显示或隐藏
+    //v-if 用于对元素进行条件渲染. 当条件为 true 时, 渲染该元素, 为 false 时, 则不渲染
+    //v-show 适用于频繁切换元素的显示状态, 因为只改变 display 属性, 不需要重新渲染整个组件
+    //v-if 适用于较少改变的场景, 因为频繁从 dom 中删除或添加元素, 会导致性能下降
+    createApp({
+        setup() {
+            const web = reactive({
+                show: true,
+                user: 500
+            })
+
+            const toggle = () => {
+                web.show = !web.show
+            }
+
+            const add = (x) => {
+                web.user += x
+            }
+
+            return {
+                web,
+                toggle,
+                add
+            }
+        }
+    }).mount("#app")
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-01-变量和常量.html</title>
+</head>
+<body>
+
+<script>
+    // 变量定义: 变量(Variable) 是用于存储数据的名称(标识符), 变量可以是任何类型, 如 "数值、字符串" 等
+
+    //字符串类型 string
+    let name = "小明" //let 用于声明一个名为 "name" 的块级作用域变量, 并将其赋值为 "小明"
+    console.log("姓名:", name) //console.log() 用于打印输出信息到控制台窗口
+    console.log("姓名类型:", typeof name) //typeof 数据类型
+
+    //数值类型 number
+    let balance = 100 //使用 number类型 表示整数
+    console.log("余额:", balance)
+    console.log("余额类型:", typeof balance)
+
+    let weight = 70.5
+    console.log("体重:", weight)
+    console.log("体重类型:", typeof weight)
+
+    //let weight = 60 //错误示范 在同一个作用域下不可以声明两个相同名称的变量
+
+    //先声明后赋值
+    let web
+    web = "gpt.zukedog.cn"
+    console.log("web:", web)
+
+    // 注: ES6不区分整型和浮点型, 所有数字都使用 number类型 来表示
+</script>
+</body>
+</html>
